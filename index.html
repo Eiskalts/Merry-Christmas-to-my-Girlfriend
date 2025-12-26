@@ -1,0 +1,2149 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Merry Christmas, love </title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #ffc0cb 0%, #ffb6c1 50%, #e6b8d4 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+            transition: background 0.8s ease;
+            padding-bottom: 100px;
+        }
+
+        /* Aurora Boreal */
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            pointer-events: none;
+            z-index: 1;
+            will-change: opacity;
+            transition: opacity 1s ease;
+            background: linear-gradient(135deg, 
+                rgba(10, 25, 47, 0.95) 0%, 
+                rgba(26, 58, 82, 0.95) 25%, 
+                rgba(19, 78, 74, 0.95) 50%, 
+                rgba(30, 58, 95, 0.95) 75%, 
+                rgba(45, 27, 78, 0.95) 100%);
+        }
+
+        body.night-mode::after {
+            opacity: 1;
+            animation: auroraFlow 20s ease-in-out infinite;
+        }
+
+        @keyframes auroraFlow {
+            0%, 100% {
+                transform: translateX(0%) scale(1);
+                filter: hue-rotate(0deg) brightness(1);
+            }
+            25% {
+                transform: translateX(-2%) scale(1.02);
+                filter: hue-rotate(10deg) brightness(1.1);
+            }
+            50% {
+                transform: translateX(2%) scale(1.01);
+                filter: hue-rotate(-10deg) brightness(1.05);
+            }
+            75% {
+                transform: translateX(-1%) scale(1.03);
+                filter: hue-rotate(5deg) brightness(1.08);
+            }
+        }
+
+        body.night-mode::before {
+            content: '';
+            position: fixed;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 50% 50%, 
+                rgba(6, 182, 212, 0.15) 0%, 
+                transparent 50%),
+                radial-gradient(circle at 80% 20%, 
+                rgba(16, 185, 129, 0.15) 0%, 
+                transparent 50%),
+                radial-gradient(circle at 20% 80%, 
+                rgba(139, 92, 246, 0.15) 0%, 
+                transparent 50%);
+            animation: auroraWaves 25s ease-in-out infinite;
+            pointer-events: none;
+            z-index: 2;
+            will-change: transform;
+        }
+
+        @keyframes auroraWaves {
+            0%, 100% {
+                transform: translate(0, 0) rotate(0deg);
+            }
+            33% {
+                transform: translate(-5%, 5%) rotate(1deg);
+            }
+            66% {
+                transform: translate(5%, -5%) rotate(-1deg);
+            }
+        }
+
+        .vignette {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            box-shadow: inset 0 0 150px rgba(0, 0, 0, 0.4);
+            pointer-events: none;
+            z-index: 9998;
+            will-change: box-shadow;
+            transition: box-shadow 0.8s ease;
+        }
+
+        body.night-mode .vignette {
+            box-shadow: inset 0 0 200px rgba(0, 0, 0, 0.7);
+        }
+
+        /* Nieve */
+        .snowflake {
+            position: fixed;
+            top: -10px;
+            z-index: 9999;
+            user-select: none;
+            cursor: default;
+            animation: fall linear infinite;
+            color: white;
+            font-size: 1.5em;
+            opacity: 0.8;
+            will-change: transform;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(100vh) translateZ(0);
+            }
+        }
+
+        /* Corazones */
+        .heart {
+            position: fixed;
+            bottom: -50px;
+            font-size: 2em;
+            color: #ff69b4;
+            opacity: 0.6;
+            animation: float 8s ease-in infinite;
+            z-index: 1;
+            will-change: transform, opacity;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotate(0deg) translateZ(0);
+                opacity: 0;
+            }
+            50% {
+                opacity: 0.6;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(360deg) translateZ(0);
+                opacity: 0;
+            }
+        }
+
+        /* Flores */
+        .flower {
+            position: fixed;
+            font-size: 4em;
+            opacity: 0.3;
+            animation: floatFlower 15s ease-in-out infinite;
+            z-index: 1;
+            will-change: transform;
+        }
+
+        @keyframes floatFlower {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg) scale(1) translateZ(0);
+            }
+            50% {
+                transform: translateY(-30px) rotate(180deg) scale(1.2) translateZ(0);
+            }
+        }
+
+        /* Árboles */
+        .christmas-tree {
+            position: fixed;
+            font-size: 6em;
+            z-index: 1;
+            animation: treeGlow 2s ease-in-out infinite;
+            will-change: filter;
+        }
+
+        .tree-left {
+            left: 20px;
+            bottom: 20px;
+        }
+
+        .tree-right {
+            right: 20px;
+            bottom: 20px;
+        }
+
+        @keyframes treeGlow {
+            0%, 100% {
+                filter: brightness(1) drop-shadow(0 0 10px #ffd700);
+            }
+            50% {
+                filter: brightness(1.3) drop-shadow(0 0 20px #ff0000);
+            }
+        }
+
+        /* Luces navideñas */
+        .lights {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            height: 50px;
+            display: flex;
+            justify-content: space-around;
+            z-index: 9999;
+        }
+
+        .light {
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            animation: blink 1.5s infinite;
+            will-change: opacity;
+        }
+
+        .light:nth-child(odd) {
+            background: #ff0000;
+            animation-delay: 0s;
+        }
+
+        .light:nth-child(even) {
+            background: #00ff00;
+            animation-delay: 0.75s;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; box-shadow: 0 0 10px currentColor; }
+            50% { opacity: 0.3; }
+        }
+
+        /* BOTÓN MODO NOCTURNO - A LA IZQUIERDA */
+        .night-mode-toggle {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            width: 60px;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.95);
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            will-change: transform;
+        }
+
+        .night-mode-toggle:hover {
+            transform: scale(1.15) rotate(10deg);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .night-mode-toggle:active {
+            transform: scale(0.95);
+        }
+
+        body.night-mode .night-mode-toggle {
+            background: rgba(20, 30, 48, 0.95);
+            box-shadow: 0 4px 20px rgba(6, 182, 212, 0.4);
+        }
+
+        body.night-mode .night-mode-toggle:hover {
+            box-shadow: 0 8px 35px rgba(6, 182, 212, 0.6);
+        }
+
+        .night-mode-icon {
+            font-size: 1.8em;
+            transition: transform 0.4s ease;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+        }
+
+        .night-mode-toggle:hover .night-mode-icon {
+            transform: rotate(20deg) scale(1.1);
+        }
+
+        .music-player {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(24, 24, 27, 0.98);
+            box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.5);
+            z-index: 9999;
+            overflow: visible; /* Cambiado de hidden a visible */
+            backdrop-filter: blur(20px);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            height: 90px;
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
+            gap: 20px;
+        }
+
+        body.night-mode .music-player {
+            background: rgba(15, 23, 42, 0.98);
+            border-top: 1px solid rgba(6, 182, 212, 0.3);
+            box-shadow: 0 -4px 20px rgba(6, 182, 212, 0.3);
+        }
+
+                /* Barra de progreso superior (siempre visible) */
+        .progress-bar-top {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.1);
+            cursor: pointer;
+            z-index: 10;
+        }
+
+        .progress-bar-top:hover {
+            height: 6px;
+            transition: height 0.2s ease;
+        }
+
+        .progress-fill-top {
+            height: 100%;
+            background: linear-gradient(90deg, #d946a6, #9333ea);
+            width: 0%;
+            transition: width 0.1s linear;
+            position: relative;
+        }
+
+        .progress-fill-top::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 12px;
+            height: 12px;
+            background: #fff;
+            border-radius: 50%;
+            opacity: 0;
+            transition: opacity 0.2s;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .progress-bar-top:hover .progress-fill-top::after {
+            opacity: 1;
+        }
+
+        .music-player.expanded .progress-bar-top {
+            display: none;
+        }
+
+        .music-player.expanded {
+    bottom: 0;
+    left: auto;
+    right: 0;
+    transform: translateX(0);
+    width: 420px;
+    height: 100vh;
+    border-radius: 0;
+    border-left: 1px solid rgba(255, 255, 255, 0.1);
+    flex-direction: column;
+    padding: 0;
+    gap: 0;
+    animation: slideInRight 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes slideInRight {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* Botón de cerrar panel lateral */
+.close-panel-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    z-index: 100;
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    z-index: 10;
+}
+
+.music-player.expanded .close-panel-btn {
+    display: flex;
+}
+
+.close-panel-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: scale(1.1);
+}
+
+        .song-info-bar {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            flex: 1;
+            min-width: 0;
+        }
+
+        .music-player.expanded .song-info-bar {
+            display: none;
+        }
+
+        .album-art-bar {
+            width: 60px;
+            height: 60px;
+            border-radius: 8px;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            flex-shrink: 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+                /* Ocultar portada pequeña cuando está expandido */
+        .music-player.expanded .album-art-bar {
+            display: none;
+        }
+
+        .album-art-bar:hover {
+            transform: scale(1.05);
+        }
+
+        .song-details-bar {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .song-title-bar {
+            font-size: 0.95em;
+            font-weight: 600;
+            color: #fff;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            margin-bottom: 4px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        }
+
+        .artist-name-bar {
+            font-size: 0.8em;
+            color: #b3b3b3;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .controls-bar {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            flex-shrink: 0;
+        }
+
+        .music-player.expanded .controls-bar {
+            display: none;
+        }
+
+        .control-btn-bar {
+            background: none;
+            border: none;
+            color: #fff;
+            cursor: pointer;
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+            border-radius: 50%;
+        }
+
+        .control-btn-bar:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: scale(1.1);
+        }
+
+        .btn-play-bar {
+            width: 40px;
+            height: 40px;
+            background: #fff;
+            color: #000;
+        }
+
+        .btn-play-bar:hover {
+            transform: scale(1.1);
+            background: #f0f0f0;
+        }
+
+        .toggle-expand-btn {
+            background: none;
+            border: none;
+            color: #b3b3b3;
+            cursor: pointer;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            border-radius: 50%;
+            margin-left: auto;
+        }
+
+        .toggle-expand-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            transform: scale(1.1);
+        }
+
+        .music-player.expanded .toggle-expand-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            z-index: 10;
+        }
+
+        .album-art-player {
+            width: 100%;
+            height: 400px;
+            flex-shrink: 0;
+            margin-top: 0;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            position: relative;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.5s ease;
+        }
+
+        .music-player.expanded .album-art-player {
+            display: flex;
+        }
+
+        .album-art-player::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0.7) 100%);
+        }
+
+        .album-placeholder-player {
+            font-size: 70px;
+            z-index: 1;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+            animation: pulse 2s ease-in-out infinite;
+            display: none;
+        }
+
+        .album-placeholder-player.show {
+            display: block;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .song-info-player {
+        padding: 25px 30px 15px;
+        text-align: center;
+        display: none;
+        }
+
+        .music-player.expanded .song-info-player {
+            display: block;
+        }
+
+        .song-title-player {
+            font-size: 1.3em;
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: #fff;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        }
+
+        .artist-name-player {
+            font-size: 0.95em;
+            color: #b3b3b3;
+            font-weight: 400;
+        }
+
+        .progress-container-player {
+            padding: 15px 30px 5px;
+            display: none;
+        }
+
+        .music-player.expanded .progress-container-player {
+            display: block;
+        }
+
+        .progress-bar-player {
+            width: 100%;
+            height: 5px;
+            background: #404040;
+            border-radius: 2px;
+            cursor: pointer;
+            position: relative;
+            margin-bottom: 8px;
+        }
+
+        .progress-player {
+            height: 100%;
+            background: linear-gradient(90deg, #d946a6, #9333ea);
+            border-radius: 2px;
+            width: 0%;
+            position: relative;
+            transition: width 0.1s linear;
+        }
+
+        .progress-player::after {
+            content: '';
+            position: absolute;
+            right: -6px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 12px;
+            height: 12px;
+            background: #fff;
+            border-radius: 50%;
+            opacity: 0;
+            transition: opacity 0.2s;
+        }
+
+        .progress-bar-player:hover .progress-player::after {
+            opacity: 1;
+        }
+
+        .time-display-player {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.75em;
+            color: #b3b3b3;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        }
+
+        .controls-player {
+            display: none;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            padding: 15px 20px 20px;
+        }
+
+        .music-player.expanded .controls-player {
+            display: flex;
+        }
+
+        .control-btn-player {
+            background: none;
+            border: none;
+            color: #fff;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .control-btn-player:hover {
+            transform: scale(1.1);
+        }
+
+        .control-btn-player:active {
+            transform: scale(0.95);
+        }
+
+        .btn-small-player {
+            width: 32px;
+            height: 32px;
+        }
+
+        .btn-play-player {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #d946a6, #9333ea);
+            border-radius: 50%;
+            color: #fff;
+            box-shadow: 0 4px 15px rgba(217, 70, 166, 0.4);
+        }
+
+        .btn-play-player:hover {
+            box-shadow: 0 6px 25px rgba(217, 70, 166, 0.6);
+        }
+
+        .icon-player {
+            width: 100%;
+            height: 100%;
+        }
+
+        .playlist-mini {
+            padding: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .playlist-mini.show {
+            padding: 10px 20px 20px;
+        }
+
+        .music-player.expanded .playlist-mini.show {
+            max-height: calc(100vh - 750px);
+            min-height: 200px;
+            overflow-y: auto;
+        }
+
+        .song-item-mini {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            margin-bottom: 5px;
+        }
+
+        .song-item-mini:hover {
+            background: #3a3a3a;
+        }
+
+        .song-item-mini.active {
+            background: rgba(217, 70, 166, 0.2);
+        }
+
+        .song-item-art-mini {
+            width: 40px;
+            height: 40px;
+            border-radius: 6px;
+            background: linear-gradient(135deg, #d946a6, #9333ea);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2em;
+            flex-shrink: 0;
+        }
+
+        .song-item-info-mini {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .song-item-title-mini {
+            font-size: 0.85em;
+            font-weight: 500;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            color: #fff;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        }
+
+        .song-item-artist-mini {
+            font-size: 0.75em;
+            color: #b3b3b3;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .toggle-playlist-btn {
+            background: none;
+            border: none;
+            color: #b3b3b3;
+            cursor: pointer;
+            padding: 10px 20px;
+            width: 100%;
+            text-align: center;
+            font-size: 0.85em;
+            transition: color 0.3s ease;
+            border-top: 1px solid #404040;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            display: none;
+        }
+
+        .music-player:not(.expanded) .toggle-playlist-btn {
+            display: none;
+        }
+
+        .music-player.expanded .toggle-playlist-btn {
+            display: block;
+        }
+
+        .toggle-playlist-btn:hover {
+            color: #fff;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            position: relative;
+            z-index: 10;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 60px;
+            animation: fadeIn 2s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1 {
+            font-size: 4em;
+            background: linear-gradient(135deg, #dc2626, #9333ea, #ffffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+            animation: gradientShift 3s ease infinite;
+            filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.3));
+        }
+
+        @keyframes gradientShift {
+            0%, 100% {
+                filter: hue-rotate(0deg) drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.3));
+            }
+            50% {
+                filter: hue-rotate(20deg) drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.3));
+            }
+        }
+
+        .subtitle {
+            font-size: 1.5em;
+            color: #fff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            margin-bottom: 10px;
+            transition: all 0.8s ease;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .subtitle:last-child {
+            font-size: 1.4em;
+            margin-top: 5px;
+        }
+
+        section {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 30px;
+            padding: 50px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            animation: slideUp 1s ease-out;
+            transition: all 0.8s ease;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h2 {
+            background: linear-gradient(135deg, #dc2626, #d946a6, #9333ea);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 2.5em;
+            text-align: center;
+            margin-bottom: 30px;
+            transition: all 0.8s ease;
+        }
+
+        p {
+            font-size: 1.3em;
+            line-height: 1.8;
+            color: #555;
+            text-align: center;
+            margin-bottom: 20px;
+            transition: color 0.8s ease;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .photo-card {
+            position: relative;
+            overflow: hidden;
+            border-radius: 20px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        /* Fotos circulares solo para Genshin */
+        section:nth-of-type(3) .photo-card {
+            border-radius: 50%;
+            aspect-ratio: 1 / 1;
+            overflow: hidden;
+        }
+
+        section:nth-of-type(3) .photo-card img {
+            width: 100%;
+            height: 100%;
+            aspect-ratio: 1 / 1;
+            object-fit: cover;
+        }
+
+        .photo-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 15px 40px rgba(217, 70, 166, 0.4);
+        }
+
+        body.night-mode .photo-card:hover {
+            box-shadow: 0 15px 40px rgba(6, 182, 212, 0.4);
+        }
+
+        .photo-card img {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+
+        .photo-card:hover img {
+            transform: scale(1.1);
+        }
+
+        .photo-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(147, 51, 234, 0.9), transparent);
+            color: white;
+            padding: 30px 20px;
+            font-size: 1.1em;
+            text-align: center;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .photo-card:hover .photo-caption {
+            transform: translateY(0);
+        }
+
+        .letter-container {
+            perspective: 1000px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 500px;
+            position: relative;
+        }
+
+        .envelope {
+            width: 350px;
+            height: 220px;
+            background: linear-gradient(135deg, #8b4513 0%, #a0522d 50%, #8b4513 100%);
+            position: relative;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            box-shadow: 
+                0 10px 30px rgba(0, 0, 0, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1),
+                inset 0 -1px 0 rgba(0, 0, 0, 0.2);
+            border: 2px solid #654321;
+        }
+
+        .envelope:hover {
+            transform: translateY(-8px);
+            box-shadow: 
+                0 15px 40px rgba(0, 0, 0, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1),
+                inset 0 -1px 0 rgba(0, 0, 0, 0.2);
+        }
+
+        /* Textura de papel del sobre */
+        .envelope::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 0;
+            border-left: 175px solid transparent;
+            border-right: 175px solid transparent;
+            border-top: 110px solid #a0522d;
+            filter: brightness(0.95);
+            box-shadow: inset 0 -2px 5px rgba(0, 0, 0, 0.2);
+            z-index: 2;
+        }
+
+        /* Sombra interna de la solapa */
+        .envelope::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 0;
+            border-left: 175px solid transparent;
+            border-right: 175px solid transparent;
+            border-top: 110px solid rgba(0, 0, 0, 0.1);
+            z-index: 1;
+        }
+
+        /* Nieve realista sobre el sobre */
+.envelope-snow {
+    position: absolute;
+    top: -10px;
+    left: 0;
+    right: 0;
+    height: 22px;
+    background: linear-gradient(180deg, #ffffff 0%, #f0f9ff 100%);
+    border-radius: 38% 62% 55% 45% / 75% 68% 32% 25%;
+    z-index: 5;
+    box-shadow: 
+        0 2px 8px rgba(255, 255, 255, 0.85),
+        inset 0 -1px 5px rgba(173, 216, 230, 0.22),
+        0 4px 12px rgba(255, 255, 255, 0.6);
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.12));
+}
+
+/* Capa adicional de nieve con textura - montículos suaves */
+.envelope-snow::before {
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: 15%;
+    width: 70%;
+    height: 12px;
+    background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.9) 0%, transparent 70%);
+    border-radius: 50%;
+    filter: blur(2px);
+}
+
+/* Detalles de nieve acumulada - borde inferior suave */
+.envelope-snow::after {
+    content: '';
+    position: absolute;
+    bottom: -3px;
+    left: 5%;
+    width: 90%;
+    height: 6px;
+    background: linear-gradient(90deg, 
+        transparent 0%, 
+        rgba(255, 255, 255, 0.5) 15%, 
+        rgba(255, 255, 255, 0.7) 50%, 
+        rgba(255, 255, 255, 0.5) 85%, 
+        transparent 100%);
+    border-radius: 50%;
+    filter: blur(1.5px);
+}
+
+        /* Copos de nieve sobre el sobre */
+        .envelope-snowflake {
+            position: absolute;
+            color: white;
+            font-size: 1.2em;
+            z-index: 6;
+            animation: gentleFloat 3s ease-in-out infinite;
+            text-shadow: 
+                0 0 5px rgba(255, 255, 255, 0.8),
+                0 0 10px rgba(173, 216, 230, 0.5);
+            filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.2));
+        }
+
+        .envelope-snowflake:nth-child(2) {
+            top: -25px;
+            left: 30%;
+            animation-delay: 0s;
+            font-size: 1em;
+        }
+
+        .envelope-snowflake:nth-child(3) {
+            top: -20px;
+            left: 60%;
+            animation-delay: 0.5s;
+            font-size: 1.3em;
+        }
+
+        .envelope-snowflake:nth-child(4) {
+            top: -30px;
+            left: 80%;
+            animation-delay: 1s;
+            font-size: 0.9em;
+        }
+
+        @keyframes gentleFloat {
+            0%, 100% {
+                transform: translateY(0px) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-8px) rotate(10deg);
+            }
+        }
+
+        /* Sello vintage mejorado */
+        .envelope-stamp {
+            position: absolute;
+            top: 145px;
+            right: 25px;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border: 3px solid #92400e;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5em;
+            z-index: 4;
+            transform: rotate(8deg);
+            box-shadow: 
+                0 2px 5px rgba(0, 0, 0, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3);
+        }
+
+        /* Borde perforado del sello */
+        .envelope-stamp::before {
+            content: '';
+            position: absolute;
+            inset: -5px;
+            background: 
+                repeating-linear-gradient(0deg, transparent, transparent 4px, #92400e 4px, #92400e 5px),
+                repeating-linear-gradient(90deg, transparent, transparent 4px, #92400e 4px, #92400e 5px);
+            z-index: -1;
+        }
+
+        /* Texto elegante - más abajo */
+        .envelope-text {
+            position: absolute;
+            top: 60%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: linear-gradient(90deg, #ff0000, #00ff00, #ff0000, #00ff00);
+            background-size: 200% 100%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 2em;
+            font-weight: 700;
+            z-index: 4;
+            font-family: 'Georgia', serif;
+            letter-spacing: 3px;
+            animation: christmasLights 2s linear infinite;
+            filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.6));
+        }
+
+        @keyframes christmasLights {
+            0% {
+                background-position: 0% 0%;
+            }
+            100% {
+                background-position: 200% 0%;
+            }
+        }
+
+        /* Detalle de costuras */
+        .envelope-stitch {
+            position: absolute;
+            width: calc(100% - 20px);
+            height: calc(100% - 20px);
+            top: 10px;
+            left: 10px;
+            border: 1px dashed rgba(101, 67, 33, 0.4);
+            pointer-events: none;
+            z-index: 3;
+            border-radius: 2px;
+        }
+
+        /* Líneas de pliegue del sobre */
+        .envelope-fold {
+            position: absolute;
+            width: 1px;
+            height: 100%;
+            background: linear-gradient(180deg, 
+                transparent 0%, 
+                rgba(0, 0, 0, 0.1) 50%, 
+                transparent 100%);
+            z-index: 1;
+        }
+
+        .envelope-fold:nth-child(6) {
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        @keyframes pulseEnvelope {
+            0%, 100% {
+                transform: translate(-50%, -50%) scale(1);
+            }
+            50% {
+                transform: translate(-50%, -50%) scale(1.2);
+            }
+        }
+
+        .letter-content {
+            display: none;
+            background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #312e81 100%);
+            color: white;
+            padding: 50px;
+            border-radius: 20px;
+            max-width: 700px;
+            position: relative;
+            animation: letterOpen 1s ease-out;
+            box-shadow: 0 0 50px rgba(147, 51, 234, 0.6);
+        }
+
+        .letter-content.show {
+            display: block;
+        }
+
+        @keyframes letterOpen {
+            from {
+                opacity: 0;
+                transform: rotateX(-90deg);
+            }
+            to {
+                opacity: 1;
+                transform: rotateX(0);
+            }
+        }
+
+        .letter-content h3 {
+            background: linear-gradient(135deg, #60a5fa, #c084fc, #ffffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 2.5em;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .letter-content p {
+            color: #e0e7ff;
+            font-size: 1.2em;
+            line-height: 2;
+            text-align: left;
+            margin-bottom: 25px;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+        }
+
+        .letter-stars {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 2s ease-in-out infinite;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0; }
+            50% { opacity: 1; }
+        }
+
+        .signature {
+            text-align: right;
+            font-size: 1.5em;
+            font-style: italic;
+            margin-top: 30px;
+            color: #fca5a5;
+        }
+
+        /* Contenedor del código secreto */
+        .secret-code-container {
+            margin-top: 50px;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            border: 2px solid rgba(147, 51, 234, 0.3);
+            text-align: center;
+            backdrop-filter: blur(10px);
+        }
+
+        .secret-label {
+            font-size: 1.3em;
+            color: #fca5a5;
+            margin-bottom: 20px;
+            font-weight: 600;
+            text-shadow: 0 0 10px rgba(252, 165, 165, 0.5);
+            text-align: center;
+            display: block;
+            width: 100%;
+        }
+
+        .secret-code {
+    position: relative;
+    display: inline-block;
+    padding: 20px 50px;
+    background: linear-gradient(135deg, #312e81 0%, #1e1b4b 100%);
+    border-radius: 15px;
+    border: 3px solid #9333ea;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 20px rgba(147, 51, 234, 0.4);
+    margin: 20px 0;
+    min-width: 350px;
+}
+
+        .secret-code:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 30px rgba(147, 51, 234, 0.6);
+        }
+
+        .code-blur {
+    font-size: 1.8em;
+    font-weight: 700;
+    color: #e0e7ff;
+    letter-spacing: 3px;
+    font-family: 'Courier New', monospace;
+    filter: blur(8px);
+    transition: all 0.5s ease;
+    user-select: none;
+    white-space: nowrap;
+}
+
+        .code-reveal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1.8em;
+    font-weight: 700;
+    color: #10b981;
+    letter-spacing: 3px;
+    font-family: 'Courier New', monospace;
+    opacity: 0;
+    transition: all 0.5s ease;
+    pointer-events: none;
+    text-shadow: 0 0 20px rgba(16, 185, 129, 0.8);
+    white-space: nowrap;
+}
+
+        .secret-code.revealed .code-blur {
+            filter: blur(0px);
+            opacity: 0;
+        }
+
+        .secret-code.revealed .code-reveal {
+            opacity: 1;
+        }
+
+                .secret-hint {
+            font-size: 0.9em;
+            color: #c084fc;
+            margin-top: 15px;
+            font-style: italic;
+            animation: pulse 2s ease-in-out infinite;
+            text-align: center;
+        }
+
+        .secret-code.revealed + .secret-hint {
+            display: none;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 0.6;
+            }
+            50% {
+                opacity: 1;
+            }
+        }
+
+        /* Efecto de partículas al revelar */
+        .reveal-particle {
+            position: absolute;
+            pointer-events: none;
+            font-size: 1.5em;
+            animation: particleFloat 1.5s ease-out forwards;
+            z-index: 1000;
+        }
+
+        @keyframes particleFloat {
+            0% {
+                transform: translate(0, 0) scale(0);
+                opacity: 1;
+            }
+            100% {
+                transform: translate(var(--tx), var(--ty)) scale(1.5);
+                opacity: 0;
+            }
+        }
+
+        .sparkle {
+            position: fixed;
+            pointer-events: none;
+            animation: sparkleAnim 1.5s ease-out;
+            z-index: 9999;
+        }
+
+        @keyframes sparkleAnim {
+            0% {
+                transform: scale(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(1.5) rotate(180deg);
+                opacity: 0;
+            }
+        }
+
+        /* Modo nocturno */
+        body.night-mode section {
+            background: rgba(15, 23, 42, 0.85);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 40px rgba(6, 182, 212, 0.2);
+        }
+
+        body.night-mode h2 {
+            background: linear-gradient(135deg, #10b981, #06b6d4, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        body.night-mode p {
+            color: #cbd5e1;
+        }
+
+        body.night-mode .subtitle {
+            color: #e0f2fe;
+            text-shadow: 0 0 20px rgba(6, 182, 212, 0.5);
+        }
+
+        body.night-mode .christmas-tree {
+            animation: treeGlowNight 2s ease-in-out infinite;
+        }
+
+        @keyframes treeGlowNight {
+            0%, 100% {
+                filter: brightness(1) drop-shadow(0 0 20px #10b981);
+            }
+            50% {
+                filter: brightness(1.5) drop-shadow(0 0 30px #06b6d4);
+            }
+        }
+
+        body.night-mode .light:nth-child(odd) {
+            background: #10b981;
+        }
+
+        body.night-mode .light:nth-child(even) {
+            background: #06b6d4;
+        }
+
+        body.night-mode .photo-caption {
+            background: linear-gradient(to top, rgba(16, 185, 129, 0.9), transparent);
+        }
+
+        /* Responsive */
+            @media (max-width: 768px) {
+        .music-player.expanded {
+            width: 100%;
+            max-width: 100%;
+        }
+
+            h1 {
+                font-size: 2.5em;
+            }
+            
+            section {
+                padding: 30px 20px;
+            }
+            
+            .gallery {
+                grid-template-columns: 1fr;
+            }
+
+            .music-player {
+                padding: 0 10px;
+                height: 80px;
+            }
+            
+            .music-player.expanded {
+                width: 95%;
+                max-width: 380px;
+            }
+            
+            .album-art-bar {
+                width: 50px;
+                height: 50px;
+            }
+            
+            .song-info-bar {
+                gap: 10px;
+            }
+            
+            .controls-bar {
+                gap: 10px;
+            }
+
+            .envelope {
+                width: 300px;
+                height: 230px;
+            }
+
+            .letter-content {
+                padding: 30px;
+            }
+
+            .christmas-tree {
+                font-size: 3em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="vignette"></div>
+    
+    <button class="night-mode-toggle" onclick="toggleNightMode()" id="nightModeBtn">
+        <span class="night-mode-icon" id="nightModeIcon">🌙</span>
+    </button>
+
+    <div class="lights">
+        <div class="light"></div>
+        <div class="light"></div>
+        <div class="light"></div>
+        <div class="light"></div>
+        <div class="light"></div>
+        <div class="light"></div>
+        <div class="light"></div>
+        <div class="light"></div>
+    </div>
+
+    <div class="christmas-tree tree-left">🎄</div>
+    <div class="christmas-tree tree-right">🎄</div>
+
+    <!-- Reproductor ESTILO SPOTIFY -->
+    <div class="music-player" id="musicPlayerContainer">
+        <!-- Botón de cerrar (solo visible cuando está expandido) -->
+        <button class="close-panel-btn" onclick="togglePlayerExpand()">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M18 6L6 18M6 6l12 12"/>
+            </svg>
+        </button>
+
+        <!-- Barra de progreso superior -->
+        <div class="progress-bar-top" id="progressBarTop">
+            <div class="progress-fill-top" id="progressFillTop"></div>
+        </div>
+        
+        <div class="album-art-bar" id="albumArtBar" onclick="togglePlayerExpand()"></div>
+        
+        <div class="song-info-bar" onclick="togglePlayerExpand()" style="cursor: pointer;">
+            <div class="song-details-bar">
+                <div class="song-title-bar" id="songTitleBar">Snowman</div>
+                <div class="artist-name-bar" id="artistNameBar">Sia</div>
+            </div>
+        </div>
+        
+        <div class="controls-bar">
+            <button class="control-btn-bar" onclick="prevSong()">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M6 6h2v12H6zm3.5 6l8.5 6V6z"/>
+                </svg>
+            </button>
+            
+            <button class="control-btn-bar btn-play-bar" onclick="togglePlayPlayer()" id="playBtnBar">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" id="playIconBar">
+                    <path d="M8 5v14l11-7z"/>
+                </svg>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" id="pauseIconBar" style="display: none;">
+                    <path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z"/>
+                </svg>
+            </button>
+            
+            <button class="control-btn-bar" onclick="nextSong()">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"/>
+                </svg>
+            </button>
+        </div>
+        
+        <div class="album-art-player" id="albumArtPlayer">
+            <div class="album-placeholder-player show">💕</div>
+        </div>
+
+        <div class="song-info-player">
+            <div class="song-title-player" id="songTitlePlayer">Snowman</div>
+            <div class="artist-name-player" id="artistNamePlayer">Sia</div>
+        </div>
+
+        <div class="progress-container-player">
+            <div class="progress-bar-player" id="progressBarPlayer">
+                <div class="progress-player" id="progressPlayer"></div>
+            </div>
+            <div class="time-display-player">
+            <span id="currentTimePlayer">0:00</span>
+            <span style="margin: 0 8px; color: #666;"> / </span>
+            <span id="totalTimePlayer">0:00</span>
+        </div>
+        </div>
+
+        <div class="controls-player">
+            <button class="control-btn-player btn-small-player" onclick="prevSong()">
+                <svg class="icon-player" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M6 6h2v12H6zm3.5 6l8.5 6V6z"/>
+                </svg>
+            </button>
+            
+            <button class="control-btn-player btn-play-player" onclick="togglePlayPlayer()" id="playBtnPlayer">
+                <svg class="icon-player" viewBox="0 0 24 24" fill="currentColor" id="playIconPlayer">
+                    <path d="M8 5v14l11-7z"/>
+                </svg>
+                <svg class="icon-player" viewBox="0 0 24 24" fill="currentColor" id="pauseIconPlayer" style="display: none;">
+                    <path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z"/>
+                </svg>
+            </button>
+            
+            <button class="control-btn-player btn-small-player" onclick="nextSong()">
+                <svg class="icon-player" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"/>
+                </svg>
+            </button>
+        </div>
+
+        <button class="toggle-playlist-btn" onclick="togglePlaylist()">
+            <span id="playlistToggleText">▼ Ver más canciones</span>
+        </button>
+
+        <div class="playlist-mini" id="playlistMini"></div>
+    </div>
+
+    <audio id="musicPlayer"></audio>
+
+    <div class="container">
+        <header>
+            <h1>✨ Feliz Navidad, Silvina ❤️</h1>
+            <p class="subtitle">Nuestra tercera Navidad juntos 🎄💍</p>
+            <p class="subtitle">Dos años de un amor que nunca cesa</p>
+        </header>
+
+        <section>
+            <h2>💫 Our love</h2>
+            <p>Fragmentos de momentos compartidos, trazos de una conexión que formamos.</p>
+            <div class="gallery">
+                <div class="photo-card">
+                    <img src="images/foto2.png" alt="Personaje 1">
+                    <div class="photo-caption">Princess Silv 🌸</div>
+                </div>
+                <div class="photo-card">
+                    <img src="images/foto1.png" alt="Personaje 2">
+                    <div class="photo-caption">Us 💍🩵</div>
+                </div>
+                <div class="photo-card">
+                    <img src="images/foto3.png" alt="Nosotros juntos">
+                    <div class="photo-caption">Sir Eiskalt ❄️</div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>Roblox</h2>
+            <p>Cada aventura juntos es especial, desde las auroras boreales hasta nuestros momentos más divertidos. En un vasto mundo digital, me siento cerca de ti.</p>
+            <div class="gallery">
+                <div class="photo-card">
+                    <img src="images/foto4.png" alt="Roblox 1">
+                    <div class="photo-caption">Bajo las luces del norte ❄️</div>
+                </div>
+                <div class="photo-card">
+                    <img src="images/foto5.png" alt="Roblox 2">
+                    <div class="photo-caption">Arte plasmado en mis recuerdos ☃️</div>
+                </div>
+                <div class="photo-card">
+                    <img src="images/foto6.png" alt="Roblox 3">
+                    <div class="photo-caption">Juntos en cada universo 🌌</div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>✨ Genshin Impact</h2>
+            <p>Teyvat... el lugar donde nos conocimos, ese sitio al que siempre regresaremos recordando nuestro amor.</p>
+            <div class="gallery">
+                <div class="photo-card">
+                    <img src="images/foto7.7.png" alt="Genshin 1">
+                    <div class="photo-caption">Nosotros en el juego 🌊🌸</div>
+                </div>
+                <div class="photo-card">
+                    <img src="images/foto7.png" alt="Genshin 2">
+                    <div class="photo-caption">Como una pareja elegante 🥃</div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>💐 Para Ti, Silvi</h2>
+            <div class="letter-container">
+                <div class="envelope" id="envelope" onclick="openLetter()">
+                    <div class="envelope-snow"></div>
+                    <div class="envelope-snowflake">❄️</div>
+                    <div class="envelope-snowflake">❄️</div>
+                    <div class="envelope-snowflake">❄️</div>
+                    <div class="envelope-stamp">🎄</div>
+                    <div class="envelope-stitch"></div>
+                    <div class="envelope-fold"></div>
+                    <div class="envelope-text">Abrir</div>
+                </div>
+                <div class="letter-content" id="letterContent">
+                    <h3>Silvina ❤️✨</h3>
+                    
+                    <p>En este vasto cosmos digital donde los mundos se entrelazan como constelaciones efímeras, encontré en ti un punto de anclaje, una estrella fija en medio del caos luminoso. 
+                    
+                    <p> Dos años. Setecientos treinta días navegando juntos entre píxeles y realidades alternas. Cada partida, cada batalla compartida, cada silencio cómodo mientras explorábamos Teyvat o Roblox fue un verso de este poema sin palabras que seguimos escribiendo.</p>
+
+                    <p>Fuiste quien caminó a mi lado en cada momento, quien dio sentido a cada etapa, y la certeza de que incluso en esta era digital hay encuentros que no se desvanecen, sino que se quedan… y se sienten reales.</p>
+
+                    <p>Esta tercera Navidad llega vestida de nieve virtual y luces reales. Los copos que caen en este sitio son apenas un reflejo del frío hermoso que compartimos, ese que congela el tiempo cuando estamos juntos pero que paradójicamente me hace sentir más vivo que nunca.</p>
+                    
+                    <p>No soy de palabras excesivas, pero en esta noche quiero ser honesto en mi forma más pura: eres lo más valioso que llegó a mi vida, lo que transformó lo cotidiano en algo que vale la pena sentir.</p>
+                    
+                    <p>Agradezco, con una profundidad que no siempre sé nombrar, cada risa compartida, cada silencio que jamás fue vacío, y tu manera paciente de comprender aquello que guardo. Agradezco que seas Silvi, mi presencia constante en este camino que elegimos recorrer.</p>
+                    
+                    <p class="signature">
+                    Te amo sin urgencias, sin fechas que me limiten, en la continuidad silenciosa de lo que es real.<br>
+                    Feliz Navidad.<br><br>
+                    Siempre tuyo.<br>
+                    Jean
+                    </p>
+
+                    <div class="secret-code-container">
+                        <div class="secret-label">Sorpresa</div>
+                        <div class="secret-code" id="secretCode">
+                            <div class="code-blur">XXXX-XXXX-XXXX</div>
+                            <div class="code-reveal">FH9QS-JCGS9-9525L</div>
+                        </div>
+                        <p class="secret-hint">✨ Un pequeño regalo para un juego que comienza con R ✨</p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        function createSnowflake() {
+            const snowflake = document.createElement('div');
+            snowflake.classList.add('snowflake');
+            snowflake.innerHTML = '❄';
+            snowflake.style.left = Math.random() * window.innerWidth + 'px';
+            snowflake.style.animationDuration = Math.random() * 3 + 5 + 's';
+            snowflake.style.opacity = Math.random();
+            snowflake.style.fontSize = Math.random() * 10 + 10 + 'px';
+            document.body.appendChild(snowflake);
+            setTimeout(() => snowflake.remove(), 8000);
+        }
+        setInterval(createSnowflake, 200);
+
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.innerHTML = '💕';
+            heart.style.left = Math.random() * window.innerWidth + 'px';
+            heart.style.animationDuration = Math.random() * 3 + 5 + 's';
+            document.body.appendChild(heart);
+            setTimeout(() => heart.remove(), 8000);
+        }
+        setInterval(createHeart, 3000);
+
+        function createFlower() {
+            const flowers = ['🌸', '🌺', '🌻', '🌹', '🌷'];
+            const flower = document.createElement('div');
+            flower.classList.add('flower');
+            flower.innerHTML = flowers[Math.floor(Math.random() * flowers.length)];
+            flower.style.left = Math.random() * window.innerWidth + 'px';
+            flower.style.top = Math.random() * window.innerHeight + 'px';
+            document.body.appendChild(flower);
+            setTimeout(() => flower.remove(), 15000);
+        }
+        setInterval(createFlower, 5000);
+
+        function createLetterStars() {
+            const letterContent = document.getElementById('letterContent');
+            for (let i = 0; i < 50; i++) {
+                const star = document.createElement('div');
+                star.classList.add('letter-stars');
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.animationDelay = Math.random() * 2 + 's';
+                letterContent.appendChild(star);
+            }
+        }
+
+        function openLetter() {
+            const envelope = document.getElementById('envelope');
+            const letterContent = document.getElementById('letterContent');
+            envelope.style.display = 'none';
+            letterContent.classList.add('show');
+            createLetterStars();
+            for (let i = 0; i < 20; i++) {
+                setTimeout(() => createSparkle(window.innerWidth / 2, window.innerHeight / 2), i * 50);
+            }
+        }
+
+        function createSparkle(x, y) {
+            const sparkle = document.createElement('div');
+            sparkle.classList.add('sparkle');
+            sparkle.innerHTML = '✨';
+            sparkle.style.left = (x + (Math.random() - 0.5) * 100) + 'px';
+            sparkle.style.top = (y + (Math.random() - 0.5) * 100) + 'px';
+            document.body.appendChild(sparkle);
+            setTimeout(() => sparkle.remove(), 1500);
+        }
+
+        document.addEventListener('click', function(e) {
+            createSparkle(e.pageX, e.pageY);
+        });
+
+        function toggleNightMode() {
+            const body = document.body;
+            const icon = document.getElementById('nightModeIcon');
+            body.classList.toggle('night-mode');
+            if (body.classList.contains('night-mode')) {
+                icon.textContent = '☀️';
+                localStorage.setItem('nightMode', 'enabled');
+            } else {
+                icon.textContent = '🌙';
+                localStorage.setItem('nightMode', 'disabled');
+            }
+        }
+
+        window.addEventListener('load', () => {
+            const nightMode = localStorage.getItem('nightMode');
+            if (nightMode === 'enabled') {
+                document.body.classList.add('night-mode');
+                document.getElementById('nightModeIcon').textContent = '☀️';
+            }
+        });
+
+        // REPRODUCTOR
+        const musicPlayer = document.getElementById('musicPlayer');
+        const songs = [
+            {
+                title: "Snowman",
+                artist: "Sia",
+                emoji: "🎅",
+                background: "linear-gradient(135deg, #d946a6 0%, #9333ea 100%)",
+                image: "images/portada1.jpeg",
+                file: "musica/cancion1.mp3"
+            },
+            {
+                title: "Apocalypse",
+                artist: "Cigarettes After Sex",
+                emoji: "🎁",
+                background: "linear-gradient(135deg, #f093fb 0%, #f5576c 100%)",
+                image: "images/portada2.jpeg",
+                file: "musica/cancion2.mp3"
+            },
+            {
+                title: "Love Story",
+                artist: "Indila",
+                emoji: "🔔",
+                background: "linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)",
+                image: "images/portada3.jpeg",
+                file: "musica/cancion3.mp3"
+            },
+            {
+                title: "Love For You - Slowed Down",
+                artist: "Loveli Lori",
+                emoji: "⭐",
+                background: "linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)",
+                image: "images/portada4.4.jpeg",
+                file: "musica/cancion4.mp3"
+            }
+        ];
+
+        let currentSongIndex = 0;
+        let isPlaying = false;
+        let duration = 0;
+
+        const albumArtPlayer = document.getElementById('albumArtPlayer');
+        const songTitlePlayer = document.getElementById('songTitlePlayer');
+        const artistNamePlayer = document.getElementById('artistNamePlayer');
+        const currentTimePlayer = document.getElementById('currentTimePlayer');
+        const totalTimePlayer = document.getElementById('totalTimePlayer');
+        const progressPlayer = document.getElementById('progressPlayer');
+        const progressBarPlayer = document.getElementById('progressBarPlayer');
+        const playIconPlayer = document.getElementById('playIconPlayer');
+        const pauseIconPlayer = document.getElementById('pauseIconPlayer');
+        const playlistMini = document.getElementById('playlistMini');
+        const albumArtBar = document.getElementById('albumArtBar');
+        const progressFillTop = document.getElementById('progressFillTop');
+        const progressBarTop = document.getElementById('progressBarTop');
+        const songTitleBar = document.getElementById('songTitleBar');
+        const artistNameBar = document.getElementById('artistNameBar');
+        const playIconBar = document.getElementById('playIconBar');
+        const pauseIconBar = document.getElementById('pauseIconBar');
+
+        function togglePlayerExpand() {
+            const player = document.getElementById('musicPlayerContainer');
+            const expandIcon = document.getElementById('expandIconBtn');
+            const collapseIcon = document.getElementById('collapseIconBtn');
+            player.classList.toggle('expanded');
+            if (player.classList.contains('expanded')) {
+                expandIcon.style.display = 'none';
+                collapseIcon.style.display = 'block';
+            } else {
+                expandIcon.style.display = 'block';
+                collapseIcon.style.display = 'none';
+            }
+        }
+
+        function loadSong(index) {
+            const song = songs[index];
+            songTitlePlayer.textContent = song.title;
+            artistNamePlayer.textContent = song.artist;
+            songTitleBar.textContent = song.title;
+            artistNameBar.textContent = song.artist;
+            
+            const placeholder = albumArtPlayer.querySelector('.album-placeholder-player');
+            if (song.image && song.image !== "") {
+                albumArtPlayer.style.background = `url('${song.image}')`;
+                albumArtPlayer.style.backgroundSize = 'cover';
+                albumArtPlayer.style.backgroundPosition = 'center';
+                placeholder.classList.remove('show');
+                albumArtBar.style.background = `url('${song.image}')`;
+                albumArtBar.style.backgroundSize = 'cover';
+                albumArtBar.style.backgroundPosition = 'center';
+            } else {
+                albumArtPlayer.style.background = song.background;
+                placeholder.textContent = song.emoji;
+                placeholder.classList.add('show');
+                albumArtBar.style.background = song.background;
+            }
+            musicPlayer.src = song.file;
+            updatePlaylistUI();
+        }
+
+        function togglePlayPlayer() {
+            isPlaying = !isPlaying;
+            if (isPlaying) {
+                musicPlayer.play();
+                playIconPlayer.style.display = 'none';
+                pauseIconPlayer.style.display = 'block';
+                playIconBar.style.display = 'none';
+                pauseIconBar.style.display = 'block';
+            } else {
+                musicPlayer.pause();
+                playIconPlayer.style.display = 'block';
+                pauseIconPlayer.style.display = 'none';
+                playIconBar.style.display = 'block';
+                pauseIconBar.style.display = 'none';
+            }
+        }
+
+        function formatTime(seconds) {
+            if (isNaN(seconds)) return '0:00';
+            if (seconds === 0) return '0:00';
+            const mins = Math.floor(seconds / 60);
+            const secs = Math.floor(seconds % 60);
+            return `${mins}:${secs < 10 ? '0' + secs : secs}`;
+        }
+
+        function prevSong() {
+            currentSongIndex = (currentSongIndex - 1 + songs.length) % songs.length;
+            loadSong(currentSongIndex);
+            if (isPlaying) musicPlayer.play();
+        }
+
+        function nextSong() {
+            currentSongIndex = (currentSongIndex + 1) % songs.length;
+            loadSong(currentSongIndex);
+            if (isPlaying) musicPlayer.play();
+        }
+
+        function renderPlaylist() {
+            playlistMini.innerHTML = songs.map((song, index) => `
+                <div class="song-item-mini ${index === currentSongIndex ? 'active' : ''}" data-index="${index}">
+                    <div class="song-item-art-mini">${song.emoji}</div>
+                    <div class="song-item-info-mini">
+                        <div class="song-item-title-mini">${song.title}</div>
+                        <div class="song-item-artist-mini">${song.artist}</div>
+                    </div>
+                </div>
+            `).join('');
+
+            document.querySelectorAll('.song-item-mini').forEach(item => {
+                item.addEventListener('click', () => {
+                    const index = parseInt(item.dataset.index);
+                    currentSongIndex = index;
+                    loadSong(index);
+                    if (!isPlaying) togglePlayPlayer();
+                    updatePlaylistUI();
+                });
+            });
+        }
+
+        function updatePlaylistUI() {
+            document.querySelectorAll('.song-item-mini').forEach((item, index) => {
+                if (index === currentSongIndex) {
+                    item.classList.add('active');
+                } else {
+                    item.classList.remove('active');
+                }
+            });
+        }
+
+        function togglePlaylist() {
+            const playlist = document.getElementById('playlistMini');
+            const toggleText = document.getElementById('playlistToggleText');
+            if (playlist.classList.contains('show')) {
+                playlist.classList.remove('show');
+                toggleText.textContent = '▼ Ver más canciones';
+            } else {
+                playlist.classList.add('show');
+                toggleText.textContent = '▲ Ocultar canciones';
+            }
+        }
+
+        musicPlayer.addEventListener('loadedmetadata', () => {
+            duration = musicPlayer.duration;
+            if (duration && !isNaN(duration)) {
+                totalTimePlayer.textContent = formatTime(duration);
+            }
+        });
+
+        musicPlayer.addEventListener('timeupdate', () => {
+            const currentTime = musicPlayer.currentTime;
+            if (duration && duration > 0) {
+                const percent = (currentTime / duration) * 100;
+            progressPlayer.style.width = percent + '%';
+            progressFillTop.style.width = percent + '%';
+            currentTimePlayer.textContent = formatTime(currentTime);
+            }
+        });
+
+        progressBarPlayer.addEventListener('click', (e) => {
+            const rect = progressBarPlayer.getBoundingClientRect();
+            const percent = (e.clientX - rect.left) / rect.width;
+            musicPlayer.currentTime = percent * duration;
+        });
+
+        progressBarTop.addEventListener('click', (e) => {
+            const rect = progressBarTop.getBoundingClientRect();
+            const percent = (e.clientX - rect.left) / rect.width;
+            musicPlayer.currentTime = percent * duration;
+        });
+
+        musicPlayer.addEventListener('ended', () => {
+            nextSong();
+        });
+
+        function initPlayer() {
+            loadSong(currentSongIndex);
+            renderPlaylist();
+        }
+
+        initPlayer();
+
+        // Código secreto revelable
+        const secretCode = document.getElementById('secretCode');
+        
+        if (secretCode) {
+            secretCode.addEventListener('click', function() {
+                if (!this.classList.contains('revealed')) {
+                    this.classList.add('revealed');
+                    
+                    // Crear partículas de celebración
+                    const particles = ['✨', '💎', '🎁', '💫', '⭐'];
+                    for (let i = 0; i < 15; i++) {
+                        setTimeout(() => {
+                            const particle = document.createElement('div');
+                            particle.className = 'reveal-particle';
+                            particle.textContent = particles[Math.floor(Math.random() * particles.length)];
+                            
+                            const rect = this.getBoundingClientRect();
+                            particle.style.left = rect.left + rect.width / 2 + 'px';
+                            particle.style.top = rect.top + rect.height / 2 + 'px';
+                            
+                            const angle = (Math.PI * 2 * i) / 15;
+                            const distance = 100;
+                            particle.style.setProperty('--tx', Math.cos(angle) * distance + 'px');
+                            particle.style.setProperty('--ty', Math.sin(angle) * distance + 'px');
+                            
+                            document.body.appendChild(particle);
+                            setTimeout(() => particle.remove(), 1500);
+                        }, i * 50);
+                    }
+                    
+                    // Crear más sparkles
+                    for (let i = 0; i < 10; i++) {
+                        setTimeout(() => {
+                            createSparkle(
+                                window.innerWidth / 2 + (Math.random() - 0.5) * 200,
+                                window.innerHeight / 2 + (Math.random() - 0.5) * 200
+                            );
+                        }, i * 100);
+                    }
+                }
+            });
+        }
+    </script>
+</body>
+</html>
